@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Extened CCP</title>
   <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script type="text/javascript" src="amazon-connect-1.4hogehoge.js"></script>
+  <script type="text/javascript" src=""></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,7 +26,7 @@
 
 <script type="text/javascript">
   var login_agent = undefined; // user.emailでも入れる
-  var ccpUrl = "https://hogehoge.awsapps.com/connect/ccp#/";
+  var ccpUrl = "";
   connect.core.initCCP(containerDiv, {
     ccpUrl: ccpUrl,
     loginPopup: true,
@@ -36,12 +36,6 @@
 
   });
 
-  // 通話をとったら電話番号をもとに注文情報windowを開く
-  const phoneNumber = contact.getActiveInitialConnection().getEndpoint().phoneNumber;
-  const connect_botton = document.getElementsByClassName("connectButton")
-  connect_button.onClick = () => {
-    window.open("")
-  }
 
   // 履歴オブジェクト
   let contacts = [];
@@ -61,6 +55,14 @@
       // 電話番後を取得
       const phoneNumber = contact.getActiveInitialConnection().getEndpoint().phoneNumber;
       //const contactId = contact.getContactId();
+
+      contact.onAccepted(function() {
+        window.open("https://www.google.co.jp");
+      })
+
+      contact.onConnecting(function () {
+        window.open("https://www.google.co.jp");
+      })
 
       // コンタクト開始（履歴用のオブジェクトを生成）
       currentContact = new Contact(phoneNumber);
